@@ -37,7 +37,7 @@ E-Graphisme/
 git clone https://github.com/IlarionDossouyovo/E-Graphisme.git
 
 # Ouvrir le dossier
-cd E-Graphisme
+cd E-Graphisme By ELECTRON
 
 # Lancer un serveur local
 python3 -m http.server 8080
@@ -49,4 +49,4 @@ python3 -m http.server 8080
 
 ---
 
-Développé avec ❤️ par E-Graphisme
+Développé avec ❤️ par E-Graphisme By ELECTRON

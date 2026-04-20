@@ -1,0 +1,36 @@
+# E-Graphisme Robots.txt
+# https://www.e-graphisme.com
+
+User-agent: *
+Allow: /
+
+# Disallow admin/private areas
+Disallow: /php/
+Disallow: /js/main.js$
+Disallow: /css/$
+
+# Sitemap
+Sitemap: https://ilariondossouyovo.github.io/E-Graphisme/sitemap.xml
+
+# Crawl-delay (optional)
+Crawl-delay: 1
+
+# Specific crawl rules for search engines
+User-agent: Googlebot
+Allow: /
+Disallow: /php/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /php/
+
+User-agent: Yandex
+Allow: /
+Disallow: /php/
+
+# Block bad bots
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /

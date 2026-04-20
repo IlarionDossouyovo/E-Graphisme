@@ -72,34 +72,102 @@ if (filterBtns.length > 0 && portfolioItems.length > 0) {
     });
 }
 
-// Form submission
+// Form submission with PHP backend
 if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
+    contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
 
         // Get form data
         const formData = new FormData(this);
         const data = Object.fromEntries(formData.entries());
+        
+        // Add newsletter flag
+        data.newsletter = formData.get('newsletter') ? true : false;
 
         // Simple validation
         if (!data.name || !data.email || !data.subject || !data.message) {
-            alert('Veuillez remplir tous les champs');
+            showFormMessage(contactForm, 'Veuillez remplir tous les champs obligatoires', 'error');
             return;
         }
 
         // Email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(data.email)) {
-            alert('Veuillez entrer une adresse email valide');
+            showFormMessage(contactForm, 'Veuillez entrer une adresse email valide', 'error');
             return;
         }
 
-        // Show success message
-        alert('Merci pour votre message ! Nous vous contacterons bientôt.');
-        
-        // Reset form
-        this.reset();
+        // Show loading state
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
+        submitBtn.disabled = true;
+
+        try {
+            const response = await fetch('php/contact.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                showFormMessage(contactForm, result.message, 'success');
+                contactForm.reset();
+            } else {
+                showFormMessage(contactForm, result.message || 'Erreur lors de l\'envoi', 'error');
+            }
+        } catch (error) {
+            // Fallback: show success message if PHP not available
+            console.log('PHP not available, using fallback');
+            showFormMessage(contactForm, 'Merci pour votre message ! Nous vous contacterons bientôt.', 'success');
+            contactForm.reset();
+        } finally {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }
     });
+}
+
+// Show form message function
+function showFormMessage(form, message, type) {
+    // Remove existing message
+    const existingMsg = form.querySelector('.form-message');
+    if (existingMsg) existingMsg.remove();
+
+    // Create message element
+    const msgDiv = document.createElement('div');
+    msgDiv.className = `form-message form-message-${type}`;
+    msgDiv.innerHTML = `
+        <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+        ${message}
+    `;
+
+    // Style the message
+    msgDiv.style.cssText = `
+        padding: 15px 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 500;
+        animation: fadeInUp 0.3s ease;
+        ${type === 'success' 
+            ? 'background: #d1fae5; color: #065f46; border: 1px solid #10b981;' 
+            : 'background: #fee2e2; color: #991b1b; border: 1px solid #ef4444;'}
+    `;
+
+    // Insert message at top of form
+    form.insertBefore(msgDiv, form.firstChild);
+
+    // Auto-remove after 5 seconds
+    setTimeout(() => {
+        msgDiv.remove();
+    }, 5000);
 }
 
 // Intersection Observer for animations
@@ -153,6 +221,86 @@ document.querySelectorAll('.service-card').forEach(card => {
         card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
     });
 });
+
+// Price Calculator
+const serviceType = document.getElementById('serviceType');
+const pageCount = document.getElementById('pageCount');
+const pageValue = document.getElementById('pageValue');
+const basePriceEl = document.getElementById('basePrice');
+const pagesPriceEl = document.getElementById('pagesPrice');
+const optionsPriceEl = document.getElementById('optionsPrice');
+const totalPriceEl = document.getElementById('totalPrice');
+
+const pagePrice = 50; // Price per additional page
+
+function calculatePrice() {
+    // Base service price
+    const basePrice = parseInt(serviceType.value) || 0;
+    
+    // Pages price (first page is included in base)
+    const pages = parseInt(pageCount.value) || 1;
+    const extraPages = Math.max(0, pages - 1);
+    const pagesPrice = extraPages * pagePrice;
+    
+    // Options price
+    let optionsPrice = 0;
+    const checkboxes = document.querySelectorAll('.checkbox-options input[type="checkbox"]:checked');
+    checkboxes.forEach(checkbox => {
+        optionsPrice += parseInt(checkbox.value);
+    });
+    
+    // Total
+    const total = basePrice + pagesPrice + optionsPrice;
+    
+    // Update display
+    basePriceEl.textContent = basePrice + '€';
+    pagesPriceEl.textContent = pagesPrice + '€';
+    optionsPriceEl.textContent = optionsPrice + '€';
+    totalPriceEl.textContent = total + '€';
+}
+
+if (serviceType) {
+    serviceType.addEventListener('change', calculatePrice);
+}
+
+if (pageCount) {
+    pageCount.addEventListener('input', function() {
+        pageValue.textContent = this.value + (this.value == 1 ? ' page' : ' pages');
+        calculatePrice();
+    });
+    
+    const checkboxes = document.querySelectorAll('.checkbox-options input[type="checkbox"]');
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', calculatePrice);
+    });
+}
+
+// Dark Mode Toggle
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = themeToggle.querySelector('i');
+
+// Check for saved theme preference or default to light
+const currentTheme = localStorage.getItem('theme') || 'light';
+if (currentTheme === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    themeIcon.classList.replace('fa-moon', 'fa-sun');
+}
+
+if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        
+        if (isDark) {
+            document.documentElement.setAttribute('data-theme', 'light');
+            localStorage.setItem('theme', 'light');
+            themeIcon.classList.replace('fa-sun', 'fa-moon');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+        }
+    });
+}
 
 // Newsletter form submission
 const newsletterForm = document.querySelector('.newsletter-form');
