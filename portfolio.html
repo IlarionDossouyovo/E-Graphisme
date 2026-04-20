@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | E-Graphisme</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">E-<span>Graphisme</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="portfolio.html" class="active">Portfolio</a></li>
+                <li><a href="about.html">À propos</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Notre <span>Portfolio</span></h1>
+            <p>Découvrez nos dernières réalisations</p>
+        </div>
+    </section>
+
+    <!-- Portfolio -->
+    <section class="portfolio-section">
+        <div class="container">
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">Tous</button>
+                <button class="filter-btn" data-filter="branding">Branding</button>
+                <button class="filter-btn" data-filter="web">Web Design</button>
+                <button class="filter-btn" data-filter="print">Print</button>
+                <button class="filter-btn" data-filter="motion">Motion</button>
+            </div>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-category="branding">
+                    <div class="portfolio-image">
+                        <div class="placeholder-img"><i class="fas fa-bezier-curve"></i></div>
+                        <div class="portfolio-overlay">
+                            <a href="#" class="view-btn"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h4>Logo TechCorp</h4>
+                        <p>Branding</p>
+                        <span class="category-tag">Branding</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="web">
+                    <div class="portfolio-image">
+                        <div class="placeholder-img"><i class="fas fa-store"></i></div>
+                        <div class="portfolio-overlay">
+                            <a href="#" class="view-btn"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h4>Boutique Mode</h4>
+                        <p>E-commerce</p>
+                        <span class="category-tag">Web</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="print">
+                    <div class="portfolio-image">
+                        <div class="placeholder-img"><i class="fas fa-newspaper"></i></div>
+                        <div class="portfolio-overlay">
+                            <a href="#" class="view-btn"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h4>Campagne Marketing</h4>
+                        <p>Affiches publicitaires</p>
+                        <span class="category-tag">Print</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="branding">
+                    <div class="portfolio-image">
+                        <div class="placeholder-img"><i class="fas fa-coffee"></i></div>
+                        <div class="portfolio-overlay">
+                            <a href="#" class="view-btn"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h4> Café Belle</h4>
+                        <p>Identité visuelle</p>
+                        <span class="category-tag">Branding</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="web">
+                    <div class="portfolio-image">
+                        <div class="placeholder-img"><i class="fas fa-utensils"></i></div>
+                        <div class="portfolio-overlay">
+                            <a href="#" class="view-btn"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h4>Restaurant Gourmet</h4>
+                        <p>Site web</p>
+                        <span class="category-tag">Web</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="motion">
+                    <div class="portfolio-image">
+                        <div class="placeholder-img"><i class="fas fa-play-circle"></i></div>
+                        <div class="portfolio-overlay">
+                            <a href="#" class="view-btn"><i class="fas fa-play"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h4>Intro Vidéo</h4>
+                        <p>Motion design</p>
+                        <span class="category-tag">Motion</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="print">
+                    <div class="portfolio-image">
+                        <div class="placeholder-img"><i class="fas fa-book-open"></i></div>
+                        <div class="portfolio-overlay">
+                            <a href="#" class="view-btn"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h4>Magazine Lifestyle</h4>
+                        <p>Mise en page</p>
+                        <span class="category-tag">Print</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="web">
+                    <div class="portfolio-image">
+                        <div class="placeholder-img"><i class="fas fa-heartbeat"></i></div>
+                        <div class="portfolio-overlay">
+                            <a href="#" class="view-btn"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h4>Clinique Santé</h4>
+                        <p>Site responsive</p>
+                        <span class="category-tag">Web</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="branding">
+                    <div class="portfolio-image">
+                        <div class="placeholder-img"><i class="fas fa-leaf"></i></div>
+                        <div class="portfolio-overlay">
+                            <a href="#" class="view-btn"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h4>EcoBrand</h4>
+                        <p>Identité écologique</p>
+                        <span class="category-tag">Branding</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Vous avez un projet ?</h2>
+            <p>Parlons de vos besoins et créons quelque chose d'incroyable ensemble.</p>
+            <a href="contact.html" class="btn btn-primary">Contactez-nous</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="index.html" class="logo">E-<span>Graphisme</span></a>
+                    <p>Design graphique & web professionnel</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Liens Rapides</h4>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Newsletter</h4>
+                    <p>Inscrivez-vous pour recevoir nos actualités</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Votre email">
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 E-Graphisme. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
