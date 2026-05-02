@@ -1,0 +1,101 @@
+[
+  {
+    "id": "logo-pack",
+    "name": "Pack Logo Premium",
+    "slug": "logo-pack",
+    "category": "branding",
+    "description": "Pack logo professionnel avec tous formats",
+    "price": 75000,
+    "old_price": 100000,
+    "currency": "XOF",
+    "images": ["/images/products/logo-pack.svg"],
+    "stock": 100,
+    "is_new": false,
+    "is_sale": true
+  },
+  {
+    "id": "business-card",
+    "name": "Carte de Visite Premium",
+    "slug": "business-card",
+    "category": "branding",
+    "description": "Cartes de visite haute qualité",
+    "price": 15000,
+    "currency": "XOF",
+    "images": ["/images/products/business-card.svg"],
+    "stock": 500,
+    "is_new": true
+  },
+  {
+    "id": "website-template",
+    "name": "Template Site Web",
+    "slug": "website-template",
+    "category": "templates",
+    "description": "Template site web professionnel responsive",
+    "price": 50000,
+    "currency": "XOF",
+    "images": ["/images/products/website-template.svg"],
+    "stock": 50,
+    "is_new": false
+  },
+  {
+    "id": "social-media-kit",
+    "name": "Kit Réseaux Sociaux",
+    "slug": "social-media-kit",
+    "category": "social",
+    "description": "Pack complet pour réseaux sociaux",
+    "price": 35000,
+    "currency": "XOF",
+    "images": ["/images/products/social-kit.svg"],
+    "stock": 200,
+    "is_new": true
+  },
+  {
+    "id": "video-intro",
+    "name": "Intro Vidéo",
+    "slug": "video-intro",
+    "category": "video",
+    "description": "Intro vidéo professionnelle pour YouTube",
+    "price": 25000,
+    "currency": "XOF",
+    "images": ["/images/products/video-intro.svg"],
+    "stock": 100,
+    "is_new": false
+  },
+  {
+    "id": "presentation-deck",
+    "name": "Presentation Deck",
+    "slug": "presentation-deck",
+    "category": "presentation",
+    "description": "Présentation PowerPoint/Keynote professionnelle",
+    "price": 45000,
+    "currency": "XOF",
+    "images": ["/images/products/presentation.svg"],
+    "stock": 75,
+    "is_new": true
+  },
+  {
+    "id": "brand-guidelines",
+    "name": "Guide Identité",
+    "slug": "brand-guidelines",
+    "category": "branding",
+    "description": "Guide complet d'utilisation de la marque",
+    "price": 80000,
+    "currency": "XOF",
+    "images": ["/images/products/brand-guide.svg"],
+    "stock": 30,
+    "is_new": false
+  },
+  {
+    "id": "ecommerce-starter",
+    "name": "E-Commerce Starter",
+    "slug": "ecommerce-starter",
+    "category": "web",
+    "description": "Kit démarrage boutique en ligne",
+    "price": 150000,
+    "currency": "XOF",
+    "images": ["/images/products/ecommerce.svg"],
+    "stock": 20,
+    "is_new": true,
+    "is_sale": true
+  }
+]

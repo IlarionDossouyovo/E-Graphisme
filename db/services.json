@@ -1,0 +1,113 @@
+[
+  {
+    "id": "web-design",
+    "name": "Web Design",
+    "slug": "web-design",
+    "category": "design",
+    "description": "Création de sites web modernes et responsives",
+    "price": 150000,
+    "currency": "XOF",
+    "duration": "7 jours",
+    "features": [
+      "Design personnalisé",
+      "Responsive (mobile, tablette, desktop)",
+      "SEO optimisé",
+      "Formulaire de contact",
+      "Intégration réseaux sociaux"
+    ],
+    "image": "/images/services/web-design.svg",
+    "popular": true
+  },
+  {
+    "id": "branding",
+    "name": "Identité Visuelle",
+    "slug": "branding",
+    "category": "design",
+    "description": "Création complète d'identité de marque",
+    "price": 200000,
+    "currency": "XOF",
+    "duration": "14 jours",
+    "features": [
+      "Logo professionnel",
+      "Palette de couleurs",
+      "Typographie",
+      "Carte de visite",
+      "Papeterie"
+    ],
+    "image": "/images/services/branding.svg"
+  },
+  {
+    "id": "video-production",
+    "name": "Production Vidéo IA",
+    "slug": "video-ia",
+    "category": "video",
+    "description": "Création de vidéos propulsées par l'IA",
+    "price": 250000,
+    "currency": "XOF",
+    "duration": "5 jours",
+    "features": [
+      "Script IA",
+      "Voice-over",
+      "Sous-titres",
+      "Musique royalty-free",
+      "Formats multiples"
+    ],
+    "image": "/images/services/video.svg",
+    "popular": true
+  },
+  {
+    "id": "seo",
+    "name": "Référencement SEO",
+    "slug": "seo",
+    "category": "marketing",
+    "description": "Optimisation pour les moteurs de recherche",
+    "price": 100000,
+    "currency": "XOF",
+    "duration": "10 jours",
+    "features": [
+      "Audit SEO",
+      "Mots-clés stratégiques",
+      "Optimisation technique",
+      "Backlinks",
+      "Rapport mensuel"
+    ],
+    "image": "/images/services/seo.svg"
+  },
+  {
+    "id": "ecommerce",
+    "name": "E-Commerce",
+    "slug": "ecommerce",
+    "category": "web",
+    "description": "Boutique en ligne complète",
+    "price": 350000,
+    "currency": "XOF",
+    "duration": "21 jours",
+    "features": [
+      "Catalogue produits",
+      "Paiement sécurisé",
+      "Gestion commandes",
+      "Tableau de bord",
+      "Support"
+    ],
+    "image": "/images/services/ecommerce.svg",
+    "popular": true
+  },
+  {
+    "id": "maintenance",
+    "name": "Maintenance",
+    "slug": "maintenance",
+    "category": "support",
+    "description": "Maintenance et mise à jour annuelle",
+    "price": 50000,
+    "currency": "XOF",
+    "duration": "1 an",
+    "features": [
+      "Mises à jour",
+      "Sécurité",
+      "Support 24/7",
+      "Sauvegardes",
+      "Rapports"
+    ],
+    "image": "/images/services/maintenance.svg"
+  }
+]
