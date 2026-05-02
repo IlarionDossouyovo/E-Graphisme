@@ -8,4 +8,5 @@ Disallow: /uploads/
 Disallow: /cache/
 
 # Sitemap
-Sitemap: https://ilariondossouyovo.github.io/E-Graphisme/sitemap.xml
+Sitemap: https://e-graphisme.vercel.app/sitemap.xml
+Sitemap: https://e-graphisme.vercel.app/sitemap.xml
