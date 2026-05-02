@@ -1,113 +1,116 @@
 [
   {
-    "id": "web-design",
-    "name": "Web Design",
-    "slug": "web-design",
-    "category": "design",
-    "description": "Création de sites web modernes et responsives",
-    "price": 150000,
-    "currency": "XOF",
-    "duration": "7 jours",
-    "features": [
-      "Design personnalisé",
-      "Responsive (mobile, tablette, desktop)",
-      "SEO optimisé",
-      "Formulaire de contact",
-      "Intégration réseaux sociaux"
-    ],
-    "image": "/images/services/web-design.svg",
-    "popular": true
-  },
-  {
-    "id": "branding",
+    "id": "identite-visuelle",
     "name": "Identité Visuelle",
-    "slug": "branding",
+    "slug": "identite-visuelle",
     "category": "design",
-    "description": "Création complète d'identité de marque",
+    "description": "Création d'identité de marque complète : logo, charte graphique, palette de couleurs.",
     "price": 200000,
     "currency": "XOF",
     "duration": "14 jours",
     "features": [
       "Logo professionnel",
+      "Charte graphique complète",
       "Palette de couleurs",
       "Typographie",
-      "Carte de visite",
-      "Papeterie"
+      "Carte de visite & papeterie"
     ],
-    "image": "/images/services/branding.svg"
+    "image": "/images/services/identite.svg",
+    "popular": true
   },
   {
-    "id": "video-production",
-    "name": "Production Vidéo IA",
-    "slug": "video-ia",
-    "category": "video",
-    "description": "Création de vidéos propulsées par l'IA",
-    "price": 250000,
+    "id": "web-design",
+    "name": "Web Design",
+    "slug": "web-design",
+    "category": "web",
+    "description": "Conception de sites web modernes, responsives et ergonomiques.",
+    "price": 150000,
+    "currency": "XOF",
+    "duration": "7 jours",
+    "features": [
+      "Design personnalisé",
+      "Responsive (mobile/tablette/desktop)",
+      "SEO optimisé",
+      "Formulaire de contact",
+      "Intégration réseaux sociaux"
+    ],
+    "image": "/images/services/web.svg",
+    "popular": true
+  },
+  {
+    "id": "print",
+    "name": "Print Design",
+    "slug": "print-design",
+    "category": "print",
+    "description": "Affiches, flyers, cartes de visite, brochures et tous supports.",
+    "price": 75000,
     "currency": "XOF",
     "duration": "5 jours",
     "features": [
-      "Script IA",
-      "Voice-over",
-      "Sous-titres",
-      "Musique royalty-free",
-      "Formats multiples"
+      "Affiches publicitaires",
+      "Flyers & dépliants",
+      "Cartes de visite",
+      "Brochures & catalogues",
+      "Supports événementiels"
     ],
-    "image": "/images/services/video.svg",
+    "image": "/images/services/print.svg",
+    "popular": false
+  },
+  {
+    "id": "marketing",
+    "name": "Marketing Visuel",
+    "slug": "marketing-visuel",
+    "category": "marketing",
+    "description": "Créations pour les réseaux sociaux, bannières publicitaires et newsletters.",
+    "price": 100000,
+    "currency": "XOF",
+    "duration": "7 jours",
+    "features": [
+      "Posts réseaux sociaux",
+      "Bannières publicitaires",
+      "Newsletters",
+      "Couverture événements",
+      "Templates publicitaires"
+    ],
+    "image": "/images/services/marketing.svg",
     "popular": true
   },
   {
-    "id": "seo",
-    "name": "Référencement SEO",
-    "slug": "seo",
-    "category": "marketing",
-    "description": "Optimisation pour les moteurs de recherche",
-    "price": 100000,
+    "id": "ui-ux",
+    "name": "UI/UX Design",
+    "slug": "ui-ux",
+    "category": "design",
+    "description": "Interfaces utilisateur intuitives et expériences utilisateur optimisées.",
+    "price": 175000,
     "currency": "XOF",
     "duration": "10 jours",
     "features": [
-      "Audit SEO",
-      "Mots-clés stratégiques",
-      "Optimisation technique",
-      "Backlinks",
-      "Rapport mensuel"
+      "Wireframes",
+      "Prototypage interactif",
+      "Tests utilisateur",
+      "Design system",
+      "Spécifications techniques"
     ],
-    "image": "/images/services/seo.svg"
+    "image": "/images/services/uiux.svg",
+    "popular": false
   },
   {
-    "id": "ecommerce",
-    "name": "E-Commerce",
-    "slug": "ecommerce",
-    "category": "web",
-    "description": "Boutique en ligne complète",
-    "price": 350000,
+    "id": "motion",
+    "name": "Motion Design",
+    "slug": "motion-design",
+    "category": "video",
+    "description": "Animations vidéo, intros, logos animés et contenus interactifs.",
+    "price": 250000,
     "currency": "XOF",
-    "duration": "21 jours",
+    "duration": "7 jours",
     "features": [
-      "Catalogue produits",
-      "Paiement sécurisé",
-      "Gestion commandes",
-      "Tableau de bord",
-      "Support"
+      "Intros vidéo",
+      "Logos animés",
+      "Animations 2D/3D",
+      "Motion graphics",
+      "Contenu interactif"
     ],
-    "image": "/images/services/ecommerce.svg",
+    "image": "/images/services/motion.svg",
     "popular": true
-  },
-  {
-    "id": "maintenance",
-    "name": "Maintenance",
-    "slug": "maintenance",
-    "category": "support",
-    "description": "Maintenance et mise à jour annuelle",
-    "price": 50000,
-    "currency": "XOF",
-    "duration": "1 an",
-    "features": [
-      "Mises à jour",
-      "Sécurité",
-      "Support 24/7",
-      "Sauvegardes",
-      "Rapports"
-    ],
-    "image": "/images/services/maintenance.svg"
   }
 ]
