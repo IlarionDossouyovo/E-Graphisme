@@ -87,9 +87,13 @@ python3 -m http.server 8080
 
 ## 🌐 Liens
 
-- **E-Graphisme**: https://ilariondossouyovo.github.io/E-Graphisme
-- **E-Studio**: https://ilariondossouyovo.github.io/E-Graphisme/studio.html
-- **GitHub**: https://github.com/IlarionDossouyovo/E-Graphisme
+**Site Live**: https://e-graphisme.vercel.app
+
+**GitHub**: https://github.com/IlarionDossouyovo/E-Graphisme
+
+- **E-Graphisme**: https://e-graphisme.vercel.app
+- **Contact**: https://e-graphisme.vercel.app/contact.html
+- **Services**: https://e-graphisme.vercel.app/services.html
 
 ---
 
