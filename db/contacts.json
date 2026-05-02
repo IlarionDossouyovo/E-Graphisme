@@ -1,0 +1,50 @@
+{
+    "contacts": [
+        {
+            "id": "msg_test_001",
+            "name": "Test Client",
+            "email": "test@example.com",
+            "phone": "+33 1 23 45 67 89",
+            "company": "Test Company",
+            "service": "web-design",
+            "budget": "1000-3000",
+            "message": "_message_content",
+            "status": "new",
+            "ip_address": "127.0.0.1",
+            "user_agent": "Test Browser",
+            "created_at": "2024-04-24 12:00:00",
+            "updated_at": "2024-04-24 12:00:00"
+        }
+    ],
+    "newsletter": [
+        {
+            "id": "sub_001",
+            "email": "subscriber@example.com",
+            "status": "active",
+            "created_at": "2024-04-24 12:00:00"
+        }
+    ],
+    "projects": [
+        {
+            "id": "proj_001",
+            "name": "Projet Test",
+            "client": "Test Client",
+            "status": "completed",
+            "budget": 2500,
+            "created_at": "2024-04-24 12:00:00",
+            "updated_at": "2024-04-24 12:00:00"
+        }
+    ],
+    "services": [
+        {
+            "id": "srv_001",
+            "name": "Web Design",
+            "slug": "web-design",
+            "description": " Création de sites web professionnels",
+            "price": 1500,
+            "status": "active",
+            "created_at": "2024-04-24 12:00:00"
+        }
+    ],
+    "appointments": []
+}

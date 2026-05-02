@@ -4,12 +4,76 @@
 
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: POST');
+header('Access-Control-Allow-Methods: POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
 
-// Enable error reporting for debugging (disable in production)
+// Handle preflight
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit;
+}
+
+// Disable error reporting in production
 error_reporting(0);
 ini_set('display_errors', 0);
+
+// Start session for CSRF
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Generate CSRF token
+function csrf_token() {
+    if (!isset($_SESSION['csrf_token'])) {
+        $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+    }
+    return $_SESSION['csrf_token'];
+}
+
+// Verify CSRF token
+function verify_csrf($token) {
+    return isset($_SESSION['csrf_token']) && hash_equals($_SESSION['csrf_token'], $token);
+}
+
+// Simple CAPTCHA check
+function verify_captcha($input_time) {
+    $current_time = time();
+    $time_diff = $current_time - (int)$input_time;
+    // Block if form filled too quickly (likely bot)
+    return $time_diff >= 3; // Minimum 3 seconds
+}
+
+// Rate limiting
+function check_rate_limit($ip, $limit = 5, $window = 3600) {
+    $rate_file = __DIR__ . '/rate_limit.json';
+    $rate_data = [];
+    
+    if (file_exists($rate_file)) {
+        $rate_data = json_decode(file_get_contents($rate_file), true) ?? [];
+    }
+    
+    // Clean old entries
+    $now = time();
+    foreach ($rate_data as $key => $entry) {
+        if ($now - $entry['time'] > $window) {
+            unset($rate_data[$key]);
+        }
+    }
+    
+    // Check limit
+    if (isset($rate_data[$ip]) && $rate_data[$ip]['count'] >= $limit) {
+        return false;
+    }
+    
+    // Update rate data
+    if (!isset($rate_data[$ip])) {
+        $rate_data[$ip] = ['count' => 0, 'time' => $now];
+    }
+    $rate_data[$ip]['count']++;
+    
+    file_put_contents($rate_file, json_encode($rate_data));
+    return true;
+}
 
 // Configuration
 $config = [
@@ -81,6 +145,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Validate email
     if (!empty($input['email']) && !validateEmail($input['email'])) {
         $errors[] = "Adresse email invalide";
+    }
+    
+    // Security: Check CSRF token
+    if (!isset($input['csrf_token']) || !verify_csrf($input['csrf_token'])) {
+        echo json_encode([
+            'success' => false,
+            'message' => 'Erreur de sécurité. Veuillez rafraîchir la page.'
+        ]);
+        exit;
+    }
+    
+    // Security: Time-based CAPTCHA (prevent bots)
+    if (!isset($input['timestamp']) || !verify_captcha($input['timestamp'])) {
+        echo json_encode([
+            'success' => false,
+            'message' => 'Erreur de vérification. Veuillez réessayer.'
+        ]);
+        exit;
+    }
+    
+    // Security: Rate limiting
+    $client_ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+    if (!check_rate_limit($client_ip)) {
+        echo json_encode([
+            'success' => false,
+            'message' => 'Trop de demandes. Veuillez patienter avant de réessayer.'
+        ]);
+        exit;
     }
     
     // If there are errors, return them

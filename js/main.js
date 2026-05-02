@@ -1,3 +1,13 @@
+// Initialize CSRF token
+(function() {
+    const metaTag = document.querySelector('meta[name="csrf-token"]');
+    if (metaTag) {
+        // Generate a random token
+        const token = 'csrf_' + Math.random().toString(36).substr(2) + Date.now().toString(36);
+        metaTag.setAttribute('content', token);
+    }
+})();
+
 // DOM Elements
 const navbar = document.querySelector(".navbar");
 const menuToggle = document.querySelector(".menu-toggle");
@@ -8,7 +18,7 @@ const contactForm = document.getElementById("contactForm");
 const navLinksItems = document.querySelectorAll(".nav-links a");
 
 // Smooth scroll for navigation links
-document.querySelectorAll("a[href^="#"]").forEach(anchor => {
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener("click", function(e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute("href"));
@@ -46,9 +56,7 @@ navLinksItems.forEach(link => {
     });
 });
 
-// Portfolio filter - works on all pages
-const filterBtns = document.querySelectorAll(".filter-btn");
-const portfolioItems = document.querySelectorAll(".portfolio-item");
+// Portfolio filter - works on all pages (already declared at top)
 
 if (filterBtns.length > 0 && portfolioItems.length > 0) {
     filterBtns.forEach(btn => {
@@ -72,6 +80,9 @@ if (filterBtns.length > 0 && portfolioItems.length > 0) {
     });
 }
 
+// Get CSRF token from meta tag or generate one
+let csrfToken = document.querySelector('meta[name="csrf-token"]')?.content;
+
 // Form submission with PHP backend
 if (contactForm) {
     contactForm.addEventListener("submit", async function(e) {
@@ -83,6 +94,10 @@ if (contactForm) {
         
         // Add newsletter flag
         data.newsletter = formData.get("newsletter") ? true : false;
+        
+        // Add security token and timestamp
+        data.csrf_token = csrfToken || '';
+        data.timestamp = Date.now();
 
         // Simple validation
         if (!data.name || !data.email || !data.subject || !data.message) {
@@ -98,9 +113,9 @@ if (contactForm) {
         }
 
         // Show loading state
-        const submitBtn = contactForm.querySelector("button[type="submit"]");
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
         const originalText = submitBtn.innerHTML;
-        submitBtn.innerHTML = "<i class="fas fa-spinner fa-spin"></i> Envoi en cours...";
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
         submitBtn.disabled = true;
 
         try {
@@ -244,7 +259,7 @@ function calculatePrice() {
     
     // Options price
     let optionsPrice = 0;
-    const checkboxes = document.querySelectorAll(".checkbox-options input[type="checkbox"]:checked");
+    const checkboxes = document.querySelectorAll('.checkbox-options input[type="checkbox"]:checked');
     checkboxes.forEach(checkbox => {
         optionsPrice += parseInt(checkbox.value);
     });
@@ -269,7 +284,7 @@ if (pageCount) {
         calculatePrice();
     });
     
-    const checkboxes = document.querySelectorAll(".checkbox-options input[type="checkbox"]");
+    const checkboxes = document.querySelectorAll('.checkbox-options input[type="checkbox"]');
     checkboxes.forEach(checkbox => {
         checkbox.addEventListener("change", calculatePrice);
     });

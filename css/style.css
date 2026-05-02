@@ -204,6 +204,30 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--primary-color);
 }
 
+/* E-Studio Navigation Link */
+.nav-links a.nav-estudio {
+    background: linear-gradient(135deg, #00D4FF, #7B2FFF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 20px;
+    background-color: rgba(0, 212, 255, 0.1);
+}
+
+.nav-links a.nav-estudio:hover {
+    background: linear-gradient(135deg, #00D4FF, #7B2FFF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-color: rgba(0, 212, 255, 0.2);
+}
+
+.nav-links a.nav-estudio::after {
+    display: none;
+}
+
 .menu-toggle {
     display: none;
     font-size: 1.5rem;

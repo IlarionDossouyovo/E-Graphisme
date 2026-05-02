@@ -27,3 +27,11 @@ build/
 .cache/
 __pycache__/
 *.pyc
+
+# Project-specific
+uploads/
+cache/
+admin/logs/
+php/rate_limit.json
+php/comments.json
+db/
