@@ -34,4 +34,3 @@ cache/
 admin/logs/
 php/rate_limit.json
 php/comments.json
-db/
