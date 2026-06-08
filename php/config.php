@@ -14,13 +14,22 @@ define('DB_ENABLED', true);
 define('DB_TYPE', 'json');
 define('DB_PATH', __DIR__ . '/../db/');
 
-// Configuration de la base de données MySQL (optionnel)
-define('DB_MYSQL_ENABLED', false);
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'egraphisme');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+// Configuration de la base de données MySQL
+define('DB_MYSQL_ENABLED', getenv('DB_MYSQL_ENABLED') !== false);
+
+// Configuration Ollama
+define('OLLAMA_ENABLED', true);
+define('DB_HOST', getenv('DB_HOST') ?: 'mysql');
+define('DB_PORT', getenv('DB_PORT') ?: '3306');
+define('DB_NAME', getenv('DB_NAME') ?: 'egraphisme');
+define('DB_USER', getenv('DB_USER') ?: 'egraphisme');
+define('DB_PASS', getenv('DB_PASS') ?: 'egraphisme_pass');
 define('DB_CHARSET', 'utf8mb4');
+
+// Configuration Ollama
+define('OLLAMA_ENABLED', true);
+define('OLLAMA_HOST', getenv('OLLAMA_HOST') ?: 'http://127.0.0.1:11434');
+define('OLLAMA_MODEL', 'llama3');
 
 // Configuration email
 define('EMAIL_FROM', 'noreply@e-graphisme.com');
