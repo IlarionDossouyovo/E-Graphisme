@@ -6,7 +6,31 @@
       "use": "@vercel/static"
     },
     {
-      "src": "css/**",
+      "src": "css/premium.css",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "css/style.css",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "css/pages.css",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "css/extra.css",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "js/premium.js",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "js/main.js",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "js/i18n.js",
       "use": "@vercel/static"
     },
     {
