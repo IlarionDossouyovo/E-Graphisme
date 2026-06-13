@@ -57,6 +57,12 @@
 </head>
 <body>
     <div class="nav-buttons">
+        <select id="langSelect" style="padding:8px;border-radius:8px;background:rgba(0,212,255,0.2);border:1px solid #00d4ff;color:#00d4ff;cursor:pointer;font-size:14px;" onchange="changeLanguage(this.value)">
+            <option value="fr">🇫🇷 FR</option>
+            <option value="en">🇬🇧 EN</option>
+            <option value="es">🇪🇸 ES</option>
+            <option value="pt">🇧🇷 PT</option>
+        </select>
         <a href="index.html" class="nav-btn">← Accueil</a>
         <a href="studio.html" class="nav-btn">E-Studio</a>
         <a href="contact.html" class="nav-btn">Contact</a>
@@ -214,5 +220,7 @@
         setInterval(refreshDashboard, 30000);
         refreshDashboard();
     </script>
+    <script src="js/i18n.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
