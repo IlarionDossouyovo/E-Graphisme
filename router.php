@@ -59,6 +59,10 @@ $routes = [
     'motion' => 'studio.html',
     'content' => 'studio.html',
     'production' => 'studio.html',
+    // AI Agents
+    'ai-agents' => 'ai-agents.html',
+    'agents' => 'ai-agents.html',
+    'robots' => 'ai-agents.html',
 ];
 
 // Check for direct route match or serve file
