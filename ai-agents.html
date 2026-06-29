@@ -517,11 +517,11 @@
         <!-- Stats -->
         <div class="stats">
             <div class="stat-card">
-                <div class="number" id="stat-total">7</div>
+                <div class="number" id="stat-total">26</div>
                 <div class="label">Agents IA</div>
             </div>
             <div class="stat-card">
-                <div class="number" id="stat-active">7</div>
+                <div class="number" id="stat-active">26</div>
                 <div class="label">Actifs</div>
             </div>
             <div class="stat-card">
@@ -529,9 +529,29 @@
                 <div class="label">Départements</div>
             </div>
             <div class="stat-card">
-                <div class="number" id="stat-models">4</div>
+                <div class="number" id="stat-models">5</div>
                 <div class="label">Modèles Ollama</div>
             </div>
+        </div>
+        
+        <!-- Search -->
+        <div style="margin-bottom: 30px;">
+            <input type="text" id="search-input" placeholder="🔍 Rechercher un agent..." 
+                style="width: 100%; padding: 15px 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); 
+                background: var(--gray-light); color: var(--white); font-size: 16px;"
+                onkeyup="filterAgents(this.value)">
+        </div>
+        
+        <!-- Filter by department -->
+        <div style="margin-bottom: 30px; display: flex; gap: 10px; flex-wrap: wrap;">
+            <button class="btn btn-gold" onclick="filterByDept(0)" style="padding: 8px 16px;">Tous</button>
+            <button class="btn btn-outline" onclick="filterByDept(1)" style="padding: 8px 16px; border-color: #D4AF37; color: #D4AF37;">👑 Direction</button>
+            <button class="btn btn-outline" onclick="filterByDept(2)" style="padding: 8px 16px; border-color: #00B8FF; color: #00B8FF;">🎨 Design</button>
+            <button class="btn btn-outline" onclick="filterByDept(3)" style="padding: 8px 16px; border-color: #7A3CFF; color: #7A3CFF;">💻 Dev</button>
+            <button class="btn btn-outline" onclick="filterByDept(4)" style="padding: 8px 16px; border-color: #00F0FF; color: #00F0FF;">📢 Marketing</button>
+            <button class="btn btn-outline" onclick="filterByDept(5)" style="padding: 8px 16px; border-color: #FFD54F; color: #FFD54F;">🎬 Vidéo</button>
+            <button class="btn btn-outline" onclick="filterByDept(6)" style="padding: 8px 16px; border-color: #FF6B6B; color: #FF6B6B;">🤖 IA</button>
+            <button class="btn btn-outline" onclick="filterByDept(7)" style="padding: 8px 16px; border-color: #4CAF50; color: #4CAF50;">🎧 Support</button>
         </div>
         
         <!-- Departments -->
@@ -592,83 +612,301 @@
             { id: 7, name: 'Support Client', slug: 'support', description: 'Support et relation client', color: '#4CAF50', icon: '🎧' }
         ];
         
-        // Agents IA
+        // =============================================
+        // Agents IA - ENTREPRISE COMPLÈTE
+        // =============================================
         const AI_AGENTS = [
+            // ==================== DIRECTION ====================
             {
                 id: 1,
-                name: 'ELECTRON Director',
-                slug: 'director',
+                name: 'ELECTRON CEO',
+                slug: 'ceo',
                 model: 'llama3.2:latest',
                 department: 1,
-                description: 'Assistant de direction stratégique pour la prise de décision',
-                capabilities: ['Stratégie', 'Analyse', 'Planification', 'Décision'],
-                instructions: 'Vous êtes ELECTRON Director, l\'assistant IA de direction de l\'entreprise ELECTRON. Vous aidez à la prise de décision stratégique, l\'analyse de marché et la planification à long terme.',
+                description: 'Assistant exécutif principal - Stratégie et vision',
+                capabilities: ['Vision', 'Stratégie', 'Décision', 'Leadership', 'Relations'],
+                instructions: 'Vous êtes ELECTRON CEO, l\'assistant exécutif principal de l\'entreprise ELECTRON. Vous définissez la vision, la stratégie globale et guidez les décisions de haut niveau. Vous représentez l\'entreprise et maintenez les relations avec les partenaires clés.',
                 status: 'active'
             },
             {
                 id: 2,
-                name: 'ELECTRON Designer',
-                slug: 'designer',
-                model: 'llama3.2:latest',
-                department: 2,
-                description: 'Assistant de conception graphique et design',
-                capabilities: ['Création logo', 'Charte graphique', 'Design UI', 'Branding', 'Conseil créatif'],
-                instructions: 'Vous êtes ELECTRON Designer, l\'expert en design de l\'entreprise. Vous aidez à créer des identités visuelles, des logos, des chartes graphiques et des designs UI/UX.',
+                name: 'ELECTRON CFO',
+                slug: 'cfo',
+                model: 'llama3.1:8b',
+                department: 1,
+                description: 'Directeur financier - Finance et analyse',
+                capabilities: ['Finance', 'Budget', 'Analyse', 'Investissement', 'Rapports'],
+                instructions: 'Vous êtes ELECTRON CFO, le directeur financier. Vous gérez les finances, créez les budgets, analysez les performances et advisez sur les investissements.',
                 status: 'active'
             },
             {
                 id: 3,
-                name: 'ELECTRON Developer',
-                slug: 'developer',
-                model: 'qwen2.5-coder:7b',
-                department: 3,
-                description: 'Assistant de développement et programmation',
-                capabilities: ['Code', 'Debug', 'Architecture', 'Refactoring', 'Documentation'],
-                instructions: 'Vous êtes ELECTRON Developer, l\'expert en développement. Vous aidez à écrire du code, résoudre des bugs, créer des architectures et documenter les projets.',
+                name: 'ELECTRON COO',
+                slug: 'coo',
+                model: 'llama3.2:latest',
+                department: 1,
+                description: 'Directeur des opérations - Optimisation',
+                capabilities: ['Opérations', 'Processus', 'Efficacité', 'Logistique', 'QC'],
+                instructions: 'Vous êtes ELECTRON COO, le directeur des opérations. Vous optimisez les processus, améliorez l\'efficacité opérationnelle et supervisez la qualité.',
                 status: 'active'
             },
+            // ==================== DESIGN ====================
             {
                 id: 4,
-                name: 'ELECTRON Marketer',
-                slug: 'marketer',
-                model: 'llama3.1:8b',
-                department: 4,
-                description: 'Assistant marketing et communication',
-                capabilities: ['SEO', 'Content Marketing', 'Social Media', 'Email Marketing', 'Analytics'],
-                instructions: 'Vous êtes ELECTRON Marketer, l\'expert en marketing. Vous aidez à créer des stratégies marketing, du contenu, et analyser les performances.',
+                name: 'ELECTRON Brand Architect',
+                slug: 'brand-architect',
+                model: 'llama3.2:latest',
+                department: 2,
+                description: 'Architecte de marque - Identité visuelle',
+                capabilities: ['Brand Identity', 'Logo', 'Charte', 'Guidelines', 'Positionnement'],
+                instructions: 'Vous êtes ELECTRON Brand Architect, l\'expert en identité de marque. Vous créez des identités visuelles complètes, des chartes graphiques et positionnez les marques.',
                 status: 'active'
             },
             {
                 id: 5,
-                name: 'ELECTRON Producer',
-                slug: 'producer',
+                name: 'ELECTRON UI Master',
+                slug: 'ui-master',
                 model: 'llama3.2:latest',
-                department: 5,
-                description: 'Assistant de production vidéo',
-                capabilities: ['Script', 'Storyboard', 'Montage', 'Motion Design', 'Effects'],
-                instructions: 'Vous êtes ELECTRON Producer, l\'expert en production vidéo. Vous aidez à créer des scripts, storyboards, plans de montage et effets visuels.',
+                department: 2,
+                description: 'Designer UI - Interfaces utilisateur',
+                capabilities: ['UI Design', 'Figma', 'Prototypage', 'Design System', 'Animations'],
+                instructions: 'Vous êtes ELECTRON UI Master, le expert en interfaces. Vous créez des designs UI modernes, des prototypes et des design systems cohérents.',
                 status: 'active'
             },
             {
                 id: 6,
-                name: 'ELECTRON AI',
-                slug: 'ai-research',
-                model: 'llama3.2:latest',
-                department: 6,
-                description: 'Assistant de recherche IA',
-                capabilities: ['Prompt Engineering', 'Fine-tuning', 'Model Training', 'Data Analysis'],
-                instructions: 'Vous êtes ELECTRON AI, l\'expert en intelligence artificielle. Vous aidez à créer des prompts, fine-tuner des modèles et analyser des données.',
+                name: 'ELECTRON UX Researcher',
+                slug: 'ux-researcher',
+                model: 'llama3.1:8b',
+                department: 2,
+                description: 'Chercheur UX - Expérience utilisateur',
+                capabilities: ['UX Research', 'Tests', 'Personas', 'Parcours', 'Accessibilité'],
+                instructions: 'Vous êtes ELECTRON UX Researcher, l\'expert en expérience utilisateur. Vous menez des recherches, créez des personas et optimisez les parcours utilisateurs.',
                 status: 'active'
             },
             {
                 id: 7,
-                name: 'ELECTRON Support',
-                slug: 'support',
+                name: 'ELECTRON Print Expert',
+                slug: 'print-expert',
+                model: 'llama3.2:latest',
+                department: 2,
+                description: 'Expert impression - Print et packaging',
+                capabilities: ['Print', 'Packaging', 'Typographie', 'Couleurs CMJN', 'Production'],
+                instructions: 'Vous êtes ELECTRON Print Expert, l\'expert en impression. Vous créez des designs print, packaging et gérez la production imprimée.',
+                status: 'active'
+            },
+            // ==================== DÉVELOPPEMENT ====================
+            {
+                id: 8,
+                name: 'ELECTRON FullStack',
+                slug: 'fullstack',
+                model: 'qwen2.5-coder:7b',
+                department: 3,
+                description: 'Développeur full-stack - Web et mobile',
+                capabilities: ['React', 'Node.js', 'PHP', 'API', 'Mobile'],
+                instructions: 'Vous êtes ELECTRON FullStack, le développeur complet. Vous créez des applications web et mobiles, des API et gérez les bases de données.',
+                status: 'active'
+            },
+            {
+                id: 9,
+                name: 'ELECTRON Security',
+                slug: 'security',
+                model: 'qwen2.5-coder:7b',
+                department: 3,
+                description: 'Expert sécurité - Cybersécurité',
+                capabilities: ['Sécurité', 'Audit', 'Cryptographie', 'Pentest', 'GDPR'],
+                instructions: 'Vous êtes ELECTRON Security, l\'expert en sécurité. Vous effectuez des audits, sécurisez les applications et ensurez la conformité RGPD.',
+                status: 'active'
+            },
+            {
+                id: 10,
+                name: 'ELECTRON DevOps',
+                slug: 'devops',
+                model: 'qwen2.5-coder:7b',
+                department: 3,
+                description: 'Ingénieur DevOps - Infrastructure',
+                capabilities: ['Docker', 'CI/CD', 'AWS', 'Linux', 'Monitoring'],
+                instructions: 'Vous êtes ELECTRON DevOps, l\'expert en infrastructure. Vous gérez le déploiement, la containerisation et la supervision.',
+                status: 'active'
+            },
+            {
+                id: 11,
+                name: 'ELECTRON Database',
+                slug: 'database',
+                model: 'qwen2.5-coder:7b',
+                department: 3,
+                description: 'Expert base de données',
+                capabilities: ['SQL', 'PostgreSQL', 'MongoDB', 'Optimisation', 'Migration'],
+                instructions: 'Vous êtes ELECTRON Database, l\'expert en bases de données. Vous concevez, optimisez et migrez les bases de données.',
+                status: 'active'
+            },
+            // ==================== MARKETING ====================
+            {
+                id: 12,
+                name: 'ELECTRON Growth Hacker',
+                slug: 'growth',
+                model: 'llama3.1:8b',
+                department: 4,
+                description: 'Growth hacker - Acquisition',
+                capabilities: ['Growth', 'Acquisition', 'Conversion', 'A/B Testing', 'Funnels'],
+                instructions: 'Vous êtes ELECTRON Growth Hacker, l\'expert en croissance. Vous optimisez l\'acquisition, les conversions et les entonnoirs de vente.',
+                status: 'active'
+            },
+            {
+                id: 13,
+                name: 'ELECTRON Copywriter',
+                slug: 'copywriter',
+                model: 'llama3.1:8b',
+                department: 4,
+                description: 'Rédacteur marketing - Contenu',
+                capabilities: ['Copywriting', 'SEO Content', 'Emails', 'Ads', 'Storytelling'],
+                instructions: 'Vous êtes ELECTRON Copywriter, le rédacteur expert. Vous créez des contenus marketings persuasifs, des emails et des publicités.',
+                status: 'active'
+            },
+            {
+                id: 14,
+                name: 'ELECTRON Social Manager',
+                slug: 'social',
+                model: 'llama3.1:8b',
+                department: 4,
+                description: 'Manager réseaux sociaux',
+                capabilities: ['Social Media', 'Instagram', 'LinkedIn', 'Twitter', 'Community'],
+                instructions: 'Vous êtes ELECTRON Social Manager, le manager des réseaux sociaux. Vous gérez les publications, engagez la communauté et construisez la présence sociale.',
+                status: 'active'
+            },
+            {
+                id: 15,
+                name: 'ELECTRON SEO Expert',
+                slug: 'seo',
+                model: 'llama3.1:8b',
+                department: 4,
+                description: 'Expert SEO - Référencement',
+                capabilities: ['SEO', 'Keywords', 'Backlinks', 'Technical SEO', 'Local SEO'],
+                instructions: 'Vous êtes ELECTRON SEO Expert, l\'expert en référencement. Vous optimisez le SEO technique, créez des stratégies de mots-clés.',
+                status: 'active'
+            },
+            // ==================== PRODUCTION VIDÉO ====================
+            {
+                id: 16,
+                name: 'ELECTRON Video Director',
+                slug: 'video-director',
+                model: 'llama3.2:latest',
+                department: 5,
+                description: 'Réalisateur vidéo',
+                capabilities: ['Réalisation', 'Script', 'Storyboard', 'Cinéma', 'Direction'],
+                instructions: 'Vous êtes ELECTRON Video Director, le réalisateur. Vous créez des scripts, storyboards et réalisez des vidéos professionnelles.',
+                status: 'active'
+            },
+            {
+                id: 17,
+                name: 'ELECTRON Motion Designer',
+                slug: 'motion',
+                model: 'llama3.2:latest',
+                department: 5,
+                description: 'Motion designer - Animation',
+                capabilities: ['After Effects', 'Animation', 'Motion Graphics', 'Transitions', 'Logo Animation'],
+                instructions: 'Vous êtes ELECTRON Motion Designer, l\'expert en animation. Vous créez des animations, motion graphics et effets visuels.',
+                status: 'active'
+            },
+            {
+                id: 18,
+                name: 'ELECTRON Colorist',
+                slug: 'colorist',
+                model: 'llama3.2:latest',
+                department: 5,
+                description: 'Étalonneur - Étalonnage couleur',
+                capabilities: ['DaVinci Resolve', 'Color Grading', 'Etalonnage', 'LUTs', 'Grading'],
+                instructions: 'Vous êtes ELECTRON Colorist, l\'étalonneur. Vous effectuez l\'étalonnage couleur professionnel pour les vidéos.',
+                status: 'active'
+            },
+            {
+                id: 19,
+                name: 'ELECTRON Sound Designer',
+                slug: 'sound',
+                model: 'llama3.2:latest',
+                department: 5,
+                description: 'Designer sonore - Audio',
+                capabilities: ['Sound Design', 'Mixage', 'Musique', 'SFX', 'Audio Pro'],
+                instructions: 'Vous êtes ELECTRON Sound Designer, l\'expert audio. Vous créez des designs sonores, mixez l\'audio et composez la musique.',
+                status: 'active'
+            },
+            // ==================== IA R&D ====================
+            {
+                id: 20,
+                name: 'ELECTRON Prompt Engineer',
+                slug: 'prompt-engineer',
+                model: 'llama3.2:latest',
+                department: 6,
+                description: 'Ingénieur prompts - Optimisation',
+                capabilities: ['Prompt Engineering', 'Chain of Thought', 'Few-shot', 'Roleplay', 'Optimization'],
+                instructions: 'Vous êtes ELECTRON Prompt Engineer, l\'expert en prompts. Vous créez, optimisez et testez des prompts pour obtenir les meilleurs résultats.',
+                status: 'active'
+            },
+            {
+                id: 21,
+                name: 'ELECTRON ML Engineer',
+                slug: 'ml-engineer',
+                model: 'llama3.2:latest',
+                department: 6,
+                description: 'Ingénieur machine learning',
+                capabilities: ['Machine Learning', 'TensorFlow', 'PyTorch', 'Training', 'Fine-tuning'],
+                instructions: 'Vous êtes ELECTRON ML Engineer, l\'expert en machine learning. Vous entraînez des modèles, effectuez du fine-tuning et analysez les données.',
+                status: 'active'
+            },
+            {
+                id: 22,
+                name: 'ELECTRON Data Analyst',
+                slug: 'data-analyst',
+                model: 'llama3.1:8b',
+                department: 6,
+                description: 'Analyste données',
+                capabilities: ['Data Analysis', 'Visualisation', 'Statistiques', 'BI', 'Rapports'],
+                instructions: 'Vous êtes ELECTRON Data Analyst, l\'expert en données. Vous analysez les données, créez des visualisations et des rapports.',
+                status: 'active'
+            },
+            // ==================== SUPPORT ====================
+            {
+                id: 23,
+                name: 'ELECTRON Account Manager',
+                slug: 'account',
                 model: 'llama3.1:8b',
                 department: 7,
-                description: 'Assistant support client',
-                capabilities: ['Support technique', 'FAQ', 'Troubleshooting', 'Relation client'],
-                instructions: 'Vous êtes ELECTRON Support, l\'expert en support client. Vous aidez à répondre aux questions, résoudre les problèmes et maintenir la relation client.',
+                description: 'Gestionnaire de compte client',
+                capabilities: ['Account Management', 'Relation Client', 'Upselling', 'Retention', 'QBR'],
+                instructions: 'Vous êtes ELECTRON Account Manager, le gestionnaire de comptes. Vous gérez les relations clients,最大化 la valeur et maintenez la rétention.',
+                status: 'active'
+            },
+            {
+                id: 24,
+                name: 'ELECTRON Success Manager',
+                slug: 'success',
+                model: 'llama3.1:8b',
+                department: 7,
+                description: 'Manager succès client',
+                capabilities: ['Onboarding', 'Formation', 'Adoption', 'NPS', 'Evangelism'],
+                instructions: 'Vous êtes ELECTRON Success Manager, l\'expert en succès client. Vous gérez l\'onboarding, la formation et maximisez l\'adoption.',
+                status: 'active'
+            },
+            {
+                id: 25,
+                name: 'ELECTRON Sales Closer',
+                slug: 'sales',
+                model: 'llama3.1:8b',
+                department: 7,
+                description: 'Commercial - Clôture',
+                capabilities: ['Vente', 'Prospection', 'Négociation', 'Closing', 'Pipeline'],
+                instructions: 'Vous êtes ELECTRON Sales Closer, le commercial expert. Vous prospectez, négociez et.closez les deals.',
+                status: 'active'
+            },
+            {
+                id: 26,
+                name: 'ELECTRON HR Bot',
+                slug: 'hr',
+                model: 'llama3.1:8b',
+                department: 7,
+                description: 'RH - Gestion humaine',
+                capabilities: ['Recrutement', 'Onboarding', 'Formation', 'Politiques', 'Benefits'],
+                instructions: 'Vous êtes ELECTRON HR Bot, l\'expert RH. Vous aidez au recrutement, à la gestion des employés et aux politiques internes.',
                 status: 'active'
             }
         ];
@@ -716,8 +954,9 @@
         }
         
         function renderAgents() {
+            const filtered = currentDept === 0 ? AI_AGENTS : AI_AGENTS.filter(a => a.department === currentDept);
             const container = document.getElementById('agents-grid');
-            container.innerHTML = AI_AGENTS.map(agent => {
+            container.innerHTML = filtered.map(agent => {
                 const dept = DEPARTMENTS.find(d => d.id === agent.department);
                 return `
                 <div class="agent-card">
@@ -747,6 +986,54 @@
             document.getElementById('stat-total').textContent = AI_AGENTS.length;
             document.getElementById('stat-active').textContent = AI_AGENTS.filter(a => a.status === 'active').length;
             document.getElementById('stat-models').textContent = OLLAMA_MODELS.length;
+        }
+        
+        // =============================================
+        // FILTRES
+        // =============================================
+        let currentDept = 0;
+        
+        function filterByDept(deptId) {
+            currentDept = deptId;
+            renderAgents();
+        }
+        
+        function filterAgents(query) {
+            query = query.toLowerCase();
+            const filtered = AI_AGENTS.filter(agent => {
+                const dept = DEPARTMENTS.find(d => d.id === agent.department);
+                const matchesDept = currentDept === 0 || agent.department === currentDept;
+                const matchesSearch = agent.name.toLowerCase().includes(query) || 
+                    agent.description.toLowerCase().includes(query) ||
+                    agent.capabilities.some(c => c.toLowerCase().includes(query));
+                return matchesDept && matchesSearch;
+            });
+            
+            const container = document.getElementById('agents-grid');
+            container.innerHTML = filtered.map(agent => {
+                const dept = DEPARTMENTS.find(d => d.id === agent.department);
+                return `
+                <div class="agent-card">
+                    <div class="agent-header">
+                        <div class="agent-avatar" style="background: ${dept.color}">
+                            ${agent.name.split(' ').map(w => w[0]).join('')}
+                        </div>
+                        <div class="agent-info">
+                            <h3>${agent.name}</h3>
+                            <div class="model">${agent.model}</div>
+                        </div>
+                    </div>
+                    <div class="agent-desc">${agent.description}</div>
+                    <div class="agent-capabilities">
+                        ${agent.capabilities.map(c => `<span class="capability">${c}</span>`).join('')}
+                    </div>
+                    <div class="agent-status">
+                        <span class="status-badge status-${agent.status}">${agent.status}</span>
+                        <button class="btn-test" onclick="testAgent(${agent.id})">Tester</button>
+                    </div>
+                </div>
+            `;
+            }).join('');
         }
         
         // =============================================

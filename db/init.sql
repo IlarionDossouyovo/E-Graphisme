@@ -136,36 +136,55 @@ VALUES ('founder', 'founder@electron.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3
 
 -- Insérer les départements
 INSERT INTO departments (name, slug, description, color, icon) VALUES
-('Direction', 'direction', 'Direction générale et stratégie', '#D4AF37', 'fa-crown'),
-('Design Graphique', 'design', 'Conception visuelle et branding', '#00B8FF', 'fa-palette'),
-('Développement', 'development', 'Développement web et applications', '#7A3CFF', 'fa-code'),
-('Marketing', 'marketing', 'Marketing digital et communication', '#00F0FF', 'fa-bullhorn'),
-('Production Vidéo', 'production', 'Production vidéo et motion design', '#FFD54F', 'fa-video'),
-('Intelligence Artificielle', 'ai', 'Recherche et développement IA', '#FF6B6B', 'fa-robot'),
-('Support Client', 'support', 'Support et relation client', '#4CAF50', 'fa-headset');
+('Direction', 'direction', 'Direction générale et stratégie', '#D4AF37', '👑'),
+('Design Graphique', 'design', 'Conception visuelle et branding', '#00B8FF', '🎨'),
+('Développement', 'development', 'Développement web et applications', '#7A3CFF', '💻'),
+('Marketing', 'marketing', 'Marketing digital et communication', '#00F0FF', '📢'),
+('Production Vidéo', 'production', 'Production vidéo et motion design', '#FFD54F', '🎬'),
+('Intelligence Artificielle', 'ai', 'Recherche et développement IA', '#FF6B6B', '🤖'),
+('Support Client', 'support', 'Support et relation client', '#4CAF50', '🎧');
 
--- Insérer les agents IA
+-- Insérer les 26 agents IA
 INSERT INTO ai_agents (name, slug, model_name, department_id, description, capabilities, instructions, color, status) VALUES
--- Direction IA
-('ELECTRON Director', 'director', 'llama3.2:latest', 1, 'Assistant de direction stratégique pour la prise de décision', '["stratégie", "analyse", "planification", "décision"]', 'Vous êtes ELECTRON Director, l\'assistant IA de direction de l\'entreprise ELECTRON. Vous aidez à la prise de décision stratégique, l\'analyse de marché et la planification à long terme.', '#D4AF37', 'active'),
+-- Direction (3 agents)
+('ELECTRON CEO', 'ceo', 'llama3.2:latest', 1, 'Assistant exécutif principal - Stratégie et vision', '["Vision", "Stratégie", "Décision", "Leadership", "Relations"]', 'Vous êtes ELECTRON CEO, l\'assistant exécutif principal de l\'entreprise ELECTRON.', '#D4AF37', 'active'),
+('ELECTRON CFO', 'cfo', 'llama3.1:8b', 1, 'Directeur financier - Finance et analyse', '["Finance", "Budget", "Analyse", "Investissement", "Rapports"]', 'Vous êtes ELECTRON CFO, le directeur financier.', '#D4AF37', 'active'),
+('ELECTRON COO', 'coo', 'llama3.2:latest', 1, 'Directeur des opérations - Optimisation', '["Opérations", "Processus", "Efficacité", "Logistique", "QC"]', 'Vous êtes ELECTRON COO, le directeur des opérations.', '#D4AF37', 'active'),
 
--- Design IA
-('ELECTRON Designer', 'designer', 'llama3.2:latest', 2, 'Assistant de conception graphique et design', '["création.logo", "charte.graphique", "design.ui", "branding", "conseil.créatif"]', 'Vous êtes ELECTRON Designer, l\'expert en design de l\'entreprise. Vous aidez à créer des identités visuelles, des logos, des chartes graphiques et des designs UI/UX.', '#00B8FF', 'active'),
+-- Design (4 agents)
+('ELECTRON Brand Architect', 'brand-architect', 'llama3.2:latest', 2, 'Architecte de marque - Identité visuelle', '["Brand Identity", "Logo", "Charte", "Guidelines", "Positionnement"]', 'Vous êtes ELECTRON Brand Architect, l\'expert en identité de marque.', '#00B8FF', 'active'),
+('ELECTRON UI Master', 'ui-master', 'llama3.2:latest', 2, 'Designer UI - Interfaces utilisateur', '["UI Design", "Figma", "Prototypage", "Design System", "Animations"]', 'Vous êtes ELECTRON UI Master, le expert en interfaces.', '#00B8FF', 'active'),
+('ELECTRON UX Researcher', 'ux-researcher', 'llama3.1:8b', 2, 'Chercheur UX - Expérience utilisateur', '["UX Research", "Tests", "Personas", "Parcours", "Accessibilité"]', 'Vous êtes ELECTRON UX Researcher, l\'expert en expérience utilisateur.', '#00B8FF', 'active'),
+('ELECTRON Print Expert', 'print-expert', 'llama3.2:latest', 2, 'Expert impression - Print et packaging', '["Print", "Packaging", "Typographie", "Couleurs CMJN", "Production"]', 'Vous êtes ELECTRON Print Expert, l\'expert en impression.', '#00B8FF', 'active'),
 
--- Development IA
-('ELECTRON Developer', 'developer', 'qwen2.5-coder:7b', 3, 'Assistant de développement et programmation', '["code", "debug", "architecture", "refactoring", "documentation"]', 'Vous êtes ELECTRON Developer, l\'expert en développement. Vous aidez à écrire du code, résoudre des bugs, créer des architectures et documenter les projets.', '#7A3CFF', 'active'),
+-- Développement (4 agents)
+('ELECTRON FullStack', 'fullstack', 'qwen2.5-coder:7b', 3, 'Développeur full-stack - Web et mobile', '["React", "Node.js", "PHP", "API", "Mobile"]', 'Vous êtes ELECTRON FullStack, le développeur complet.', '#7A3CFF', 'active'),
+('ELECTRON Security', 'security', 'qwen2.5-coder:7b', 3, 'Expert sécurité - Cybersécurité', '["Sécurité", "Audit", "Cryptographie", "Pentest", "GDPR"]', 'Vous êtes ELECTRON Security, l\'expert en sécurité.', '#7A3CFF', 'active'),
+('ELECTRON DevOps', 'devops', 'qwen2.5-coder:7b', 3, 'Ingénieur DevOps - Infrastructure', '["Docker", "CI/CD", "AWS", "Linux", "Monitoring"]', 'Vous êtes ELECTRON DevOps, l\'expert en infrastructure.', '#7A3CFF', 'active'),
+('ELECTRON Database', 'database', 'qwen2.5-coder:7b', 3, 'Expert base de données', '["SQL", "PostgreSQL", "MongoDB", "Optimisation", "Migration"]', 'Vous êtes ELECTRON Database, l\'expert en bases de données.', '#7A3CFF', 'active'),
 
--- Marketing IA
-('ELECTRON Marketer', 'marketer', 'llama3.1:8b', 4, 'Assistant marketing et communication', '["seo", "content.marketing", "social.media", "email.marketing", "analytics"]', 'Vous êtes ELECTRON Marketer, l\'expert en marketing. Vous aidez à créer des stratégies marketing, du contenu, et analyser les performances.', '#00F0FF', 'active'),
+-- Marketing (4 agents)
+('ELECTRON Growth Hacker', 'growth', 'llama3.1:8b', 4, 'Growth hacker - Acquisition', '["Growth", "Acquisition", "Conversion", "A/B Testing", "Funnels"]', 'Vous êtes ELECTRON Growth Hacker, l\'expert en croissance.', '#00F0FF', 'active'),
+('ELECTRON Copywriter', 'copywriter', 'llama3.1:8b', 4, 'Rédacteur marketing - Contenu', '["Copywriting", "SEO Content", "Emails", "Ads", "Storytelling"]', 'Vous êtes ELECTRON Copywriter, le rédacteur expert.', '#00F0FF', 'active'),
+('ELECTRON Social Manager', 'social', 'llama3.1:8b', 4, 'Manager réseaux sociaux', '["Social Media", "Instagram", "LinkedIn", "Twitter", "Community"]', 'Vous êtes ELECTRON Social Manager, le manager des réseaux sociaux.', '#00F0FF', 'active'),
+('ELECTRON SEO Expert', 'seo', 'llama3.1:8b', 4, 'Expert SEO - Référencement', '["SEO", "Keywords", "Backlinks", "Technical SEO", "Local SEO"]', 'Vous êtes ELECTRON SEO Expert, l\'expert en référencement.', '#00F0FF', 'active'),
 
--- Production Vidéo IA
-('ELECTRON Producer', 'producer', 'llama3.2:latest', 5, 'Assistant de production vidéo', '["script", "storyboard", "montage", "motion.design", "effects"]', 'Vous êtes ELECTRON Producer, l\'expert en production vidéo. Vous aidez à créer des scripts, storyboards, plans de montage et effets visuels.', '#FFD54F', 'active'),
+-- Production Vidéo (4 agents)
+('ELECTRON Video Director', 'video-director', 'llama3.2:latest', 5, 'Réalisateur vidéo', '["Réalisation", "Script", "Storyboard", "Cinéma", "Direction"]', 'Vous êtes ELECTRON Video Director, le réalisateur.', '#FFD54F', 'active'),
+('ELECTRON Motion Designer', 'motion', 'llama3.2:latest', 5, 'Motion designer - Animation', '["After Effects", "Animation", "Motion Graphics", "Transitions", "Logo Animation"]', 'Vous êtes ELECTRON Motion Designer, l\'expert en animation.', '#FFD54F', 'active'),
+('ELECTRON Colorist', 'colorist', 'llama3.2:latest', 5, 'Étalonneur - Étalonnage couleur', '["DaVinci Resolve", "Color Grading", "Etalonnage", "LUTs", "Grading"]', 'Vous êtes ELECTRON Colorist, l\'étalonneur.', '#FFD54F', 'active'),
+('ELECTRON Sound Designer', 'sound', 'llama3.2:latest', 5, 'Designer sonore - Audio', '["Sound Design", "Mixage", "Musique", "SFX", "Audio Pro"]', 'Vous êtes ELECTRON Sound Designer, l\'expert audio.', '#FFD54F', 'active'),
 
--- IA R&D
-('ELECTRON AI', 'ai-research', 'llama3.2:latest', 6, 'Assistant de recherche IA', '["prompt.engineering", "fine.tuning", "model.training", "data.analysis"]', 'Vous êtes ELECTRON AI, l\'expert en intelligence artificielle. Vous aidez à créer des prompts, fine-tuner des modèles et analyser des données.', '#FF6B6B', 'active'),
+-- IA R&D (3 agents)
+('ELECTRON Prompt Engineer', 'prompt-engineer', 'llama3.2:latest', 6, 'Ingénieur prompts - Optimisation', '["Prompt Engineering", "Chain of Thought", "Few-shot", "Roleplay", "Optimization"]', 'Vous êtes ELECTRON Prompt Engineer, l\'expert en prompts.', '#FF6B6B', 'active'),
+('ELECTRON ML Engineer', 'ml-engineer', 'llama3.2:latest', 6, 'Ingénieur machine learning', '["Machine Learning", "TensorFlow", "PyTorch", "Training", "Fine-tuning"]', 'Vous êtes ELECTRON ML Engineer, l\'expert en machine learning.', '#FF6B6B', 'active'),
+('ELECTRON Data Analyst', 'data-analyst', 'llama3.1:8b', 6, 'Analyste données', '["Data Analysis", "Visualisation", "Statistiques", "BI", "Rapports"]', 'Vous êtes ELECTRON Data Analyst, l\'expert en données.', '#FF6B6B', 'active'),
 
--- Support IA
-('ELECTRON Support', 'support', 'llama3.1:8b', 7, 'Assistant support client', '["support.technique", "faq", "troubleshooting", "relationship.client"]', 'Vous êtes ELECTRON Support, l\'expert en support client. Vous aidez à répondre aux questions, résoudre les problèmes et maintenir la relation client.', '#4CAF50', 'active');
+-- Support (4 agents)
+('ELECTRON Account Manager', 'account', 'llama3.1:8b', 7, 'Gestionnaire de compte client', '["Account Management", "Relation Client", "Upselling", "Retention", "QBR"]', 'Vous êtes ELECTRON Account Manager, le gestionnaire de comptes.', '#4CAF50', 'active'),
+('ELECTRON Success Manager', 'success', 'llama3.1:8b', 7, 'Manager succès client', '["Onboarding", "Formation", "Adoption", "NPS", "Evangelism"]', 'Vous êtes ELECTRON Success Manager, l\'expert en succès client.', '#4CAF50', 'active'),
+('ELECTRON Sales Closer', 'sales', 'llama3.1:8b', 7, 'Commercial - Clôture', '["Vente", "Prospection", "Négociation", "Closing", "Pipeline"]', 'Vous êtes ELECTRON Sales Closer, le commercial expert.', '#4CAF50', 'active'),
+('ELECTRON HR Bot', 'hr', 'llama3.1:8b', 7, 'RH - Gestion humaine', '["Recrutement", "Onboarding", "Formation", "Politiques", "Benefits"]', 'Vous êtes ELECTRON HR Bot, l\'expert RH.', '#4CAF50', 'active');
 
 -- Insérer les services
 INSERT INTO services (name, slug, department_id, description, price, features) VALUES
