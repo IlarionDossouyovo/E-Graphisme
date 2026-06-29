@@ -1,4 +1,9 @@
 services:
+  # =============================================
+  # E-GRAPHISME & E-STUDIO by ELECTRON
+  # Complete System Configuration
+  # =============================================
+  
   # Site Web E-Graphisme
   web:
     build: .
@@ -6,12 +11,32 @@ services:
     volumes:
       - ./db:/workspace/project/E-Graphisme/db
       - ./php:/workspace/project/E-Graphisme/php
+      - ./js:/workspace/project/E-Graphisme/js
+      - ./css:/workspace/project/E-Graphisme/css
     environment:
       - OLLAMA_HOST=http://127.0.0.1:11434
       - N8N_WEBHOOK_URL=http://127.0.0.1:5678/webhook
+      - DATABASE_URL=127.0.0.1:3306
+      - APP_URL=http://127.0.0.1:8000
+      - E_STUDIO_ENABLED=true
+      - BRAND_ELECTRON=true
     command: php -S 127.0.0.1:8000 -t /workspace/project/E-Graphisme
 
-  # N8N pour automatisation
+  # =============================================
+  # OLLAMA - AI Models (DeepSeek, Llama, Mistral, Gemma)
+  # =============================================
+  ollama:
+    image: ollama/ollama:latest
+    network_mode: host
+    environment:
+      - OLLAMA_HOST=0.0.0.0:11434
+      - OLLAMA_MODELS=/root/.ollama
+    volumes:
+      - ollama-data:/root/.ollama
+
+  # =============================================
+  # N8N - Automation Workflows
+  # =============================================
   n8n:
     image: n8nio/n8n:latest
     network_mode: host
@@ -22,10 +47,15 @@ services:
       - N8N_HOST=http://127.0.0.1:5678
       - WEBHOOK_URL=http://127.0.0.1:5678
       - GENERIC_TIMEZONE=Africa/Cotonou
+      - OLLAMA_URL=http://127.0.0.1:11434
+      - EXECUTEDATA_SAVE=true
+      - QUEUE_BULL_ENABLED=true
     volumes:
       - n8n-data:/home/node/.n8n
 
-  # Database (MariaDB pour production)
+  # =============================================
+  # Database (MariaDB)
+  # =============================================
   database:
     image: mariadb:10.11
     network_mode: host
@@ -37,6 +67,45 @@ services:
     volumes:
       - db-data:/var/lib/mysql
 
+  # =============================================
+  # Redis - Cache & Sessions
+  # =============================================
+  redis:
+    image: redis:7-alpine
+    network_mode: host
+    ports:
+      - "6379:6379"
+
+  # =============================================
+  # MinIO - File Storage (S3 Compatible)
+  # =============================================
+  minio:
+    image: minio/minio:latest
+    network_mode: host
+    environment:
+      - MINIO_ROOT_USER=egraphisme
+      - MINIO_ROOT_PASSWORD=egraphisme2026
+    command: server /data --console-address ":9001"
+    volumes:
+      - minio-data:/data
+
+  # =============================================
+  # Traefik - Reverse Proxy
+  # =============================================
+  traefik:
+    image: traefik:v3.0
+    network_mode: host
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    volumes:
+      - ./traefik:/etc/traefik
+    environment:
+      - TZ=Africa/Cotonou
+
 volumes:
   n8n-data:
   db-data:
+  ollama-data:
+  minio-data:

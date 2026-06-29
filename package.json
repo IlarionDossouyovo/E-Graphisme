@@ -1,22 +1,61 @@
 {
   "name": "e-graphisme",
   "version": "2.0.0",
-  "description": "E-Graphisme AI - Plateforme SaaS de design graphique et production vidéo",
+  "description": "E-Graphisme & E-Studio AI - Plateforme SaaS de design graphique et production vidéo par ELECTRON",
   "main": "index.html",
   "scripts": {
-    "start": "php -S localhost:8080",
-    "server": "python -m http.server 8080",
-    "dev": "php -S localhost:8080 -t .",
+    "start": "php -S localhost:8080 router.php",
+    "server": "python server.py",
+    "dev": "php -S localhost:8080 -t . router.php",
     "serve": "python -m http.server 8080 --bind 0.0.0.0",
     "deploy": "vercel --prod",
-    "update": "git pull origin mai"
+    "update": "git pull origin E-Graphisme",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f",
+    "ollama:pull": "docker exec ollama ollama pull deepseek",
+    "ollama:list": "docker exec ollama ollama list",
+    "n8n": "open http://localhost:5678",
+    "studio": "open http://localhost:8080/studio",
+    "dashboard": "open http://localhost:8080/dashboard",
+    "admin": "open http://localhost:8080/admin"
   },
-  "keywords": ["design", "ai", "branding", "video", "saas", "n8n", "ollama"],
-  "author": "E-Graphisme By ELECTRON",
+  "keywords": ["design", "ai", "branding", "video", "saas", "n8n", "ollama", "electron", "e-studio"],
+  "author": "ELECTRON",
   "license": "MIT",
   "homepage": "https://e-graphisme.com",
   "repository": {
     "type": "git",
     "url": "https://github.com/IlarionDossouyovo/E-Graphisme.git"
+  },
+  "brands": {
+    "e-graphisme": {
+      "name": "E-Graphisme by ELECTRON",
+      "colors": {
+        "gold": "#D4AF37",
+        "goldPremium": "#F8E08E",
+        "goldDark": "#8B6B1F",
+        "black": "#0A0A0A",
+        "white": "#FFFFFF"
+      }
+    },
+    "e-studio": {
+      "name": "E-Studio by ELECTRON",
+      "colors": {
+        "deepBlack": "#05070A",
+        "electricBlue": "#00B8FF",
+        "neonPurple": "#7A3CFF",
+        "cyan": "#00F0FF",
+        "white": "#FFFFFF"
+      }
+    }
+  },
+  "services": {
+    "web": "http://localhost:8080",
+    "ollama": "http://localhost:11434",
+    "n8n": "http://localhost:5678",
+    "redis": "http://localhost:6379",
+    "minio": "http://localhost:9000",
+    "minioConsole": "http://localhost:9001"
   }
 }

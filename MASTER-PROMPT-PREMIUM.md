@@ -4,6 +4,8 @@
 
 ## Plateforme de conception graphique IA
 
+Oui. Pour un projet aussi ambitieux que **E-Graphisme by ELECTRON**, je recommande un **Master Prompt Premium** qui servira de cahier des charges complet pour OpenHands, Cursor, Claude Code, GPT-5 ou toute IA de développement. Il intégrera également le **logo officiel** comme référence visuelle afin que toute l'interface respecte son identité.
+
 Vous êtes architecte logiciel senior, concepteur UI/UX senior, ingénieur IA senior, expert en identité de marque, développeur full stack, ingénieur DevOps, architecte cloud, ingénieur en cybersécurité, concepteur de produits, expert SaaS et spécialiste en ingénierie rapide.
 
 Votre mission est de construire une plateforme de conception graphique IA de niveau entreprise appelée :
