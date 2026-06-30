@@ -32,6 +32,14 @@ def hash_password(password):
     """Hash password using SHA256"""
     return hashlib.sha256(password.encode()).hexdigest()
 
+@app.route('/api/users', methods=['GET'])
+def get_users():
+    """Get all users"""
+    users = load_users()
+    for u in users:
+        u.pop('password', None)
+    return jsonify({'success': True, 'users': users})
+
 @app.route('/api/users/register', methods=['POST'])
 def register():
     """Register a new user"""
