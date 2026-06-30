@@ -694,6 +694,22 @@
                 };
                 localStorage.setItem("estudio_user", JSON.stringify(userData));
 
+                // Save to API
+                try {
+                    await fetch('http://localhost:8002/api/users/register', {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({
+                            name: userData.name,
+                            email: userData.email,
+                            password: document.getElementById("motdepasse").value,
+                            credits: 100
+                        })
+                    });
+                } catch (e) {
+                    console.log('API not available, using local storage');
+                }
+
                 // Redirect to studio dashboard
                 setTimeout(() => {
                     window.location.href = 'studio-dashboard.html';
