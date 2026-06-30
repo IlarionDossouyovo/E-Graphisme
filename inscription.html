@@ -663,7 +663,7 @@
         }
         
         // Form submission
-        document.getElementById('inscription-form').addEventListener('submit', function(e) {
+        document.getElementById('inscription-form').addEventListener('submit', async function(e) {
             e.preventDefault();
             
             const email = document.getElementById('email').value;
@@ -702,19 +702,22 @@
                         body: JSON.stringify({
                             name: userData.name,
                             email: userData.email,
-                            password: document.getElementById("motdepasse").value,
+                            password: password,
                             credits: 100
                         })
                     });
                 } catch (e) {
-                    console.log('API not available, using local storage');
+                    console.log('API not available');
                 }
+
+                showToast('Compte créé avec succès!', 'success');
+                btn.innerHTML = '<i class="fas fa-check"></i> Compte créé!';
 
                 // Redirect to studio dashboard
                 setTimeout(() => {
                     window.location.href = 'studio-dashboard.html';
-                }, 1500);
-            }, 2000);
+                }, 1000);
+            });
         });
         
         // Social buttons
