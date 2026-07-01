@@ -497,14 +497,14 @@
     
     <!-- Header -->
     <header>
-        <a href="index.html" class="logo"><img src="images/logo-electron-premium.svg" alt="E-Graphisme" class="logo-img"><span class="logo-text">
-            <img src="images/logo-estudio-icon.svg" alt="E-Studio" class="logo-icon">
+        <a href="index.html" class="logo">
+            <img src="images/logo-electron-premium.svg" alt="E-Graphisme" class="logo-icon">
             <span class="logo-text">E-<span>Studio</span></span>
         </a>
         <div class="header-links">
             <a href="index.html">Accueil</a>
             <a href="studio.html">E-Studio</a>
-            <a href="studio-dashboard.html">Dashboard</a>
+            <a href="dashboard.html">Dashboard</a>
             <a href="contact.html">Contact</a>
         </div>
     </header>
@@ -681,46 +681,47 @@
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Création...';
             btn.disabled = true;
             
+            // Save user session in localStorage
+            const userData = {
+                name: document.getElementById('nom').value,
+                email: email,
+                type: typeCompte,
+                created: new Date().toISOString()
+            };
+            localStorage.setItem('estudio_user', JSON.stringify(userData));
+
+            // Try to save to API
+            try {
+                await fetch('http://localhost:8002/api/users/register', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        name: userData.name,
+                        email: userData.email,
+                        password: password,
+                        credits: 100
+                    })
+                });
+            } catch (e) {
+                console.log('API non disponible, utilisation du stockage local');
+            }
+
             setTimeout(() => {
                 showToast('Compte créé avec succès!', 'success');
                 btn.innerHTML = '<i class="fas fa-check"></i> Compte créé!';
                 
-                // Save user session
-                const userData = {
-                    name: document.getElementById("nom").value,
-                    email: document.getElementById("email").value,
-                    type: typeCompte,
-                    created: new Date().toISOString()
-                };
-                localStorage.setItem("estudio_user", JSON.stringify(userData));
-
-                // Save to API
-                try {
-                    await fetch('http://localhost:8002/api/users/register', {
-                        method: 'POST',
-                        headers: {'Content-Type': 'application/json'},
-                        body: JSON.stringify({
-                            name: userData.name,
-                            email: userData.email,
-                            password: password,
-                            credits: 100
-                        })
-                    });
-                } catch (e) {
-                    console.log('API not available');
-                }
-
-                showToast('Compte créé avec succès!', 'success');
-                btn.innerHTML = '<i class="fas fa-check"></i> Compte créé!';
-
-                // Redirect to studio dashboard
+                // Redirect based on account type
                 setTimeout(() => {
-                    window.location.href = 'studio-dashboard.html';
-                }, 1000);
-            });
+                    if (typeCompte === 'gratuit') {
+                        window.location.href = 'studio.html';
+                    } else {
+                        window.location.href = 'studio.html#pricing';
+                    }
+                }, 1500);
+            }, 2000);
         });
         
-        // Social buttons
+        // Boutons de partage
         document.querySelectorAll('.social-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 showToast('Connexion sociale bientôt disponible', 'info');
