@@ -318,12 +318,12 @@
         <aside class="sidebar">
             <ul class="sidebar-menu">
                 <li><a href="studio-dashboard.html" class="active"><i class="fas fa-home"></i> Accueil</a></li>
-                <li><a href="#projects"><i class="fas fa-folder"></i> Projets</a></li>
-                <li><a href="#templates"><i class="fas fa-th-large"></i> Modèles</a></li>
-                <li><a href="#videos"><i class="fas fa-video"></i> Vidéos</a></li>
-                <li><a href="#analytics"><i class="fas fa-chart-line"></i> Analytiques</a></li>
-                <li><a href="#settings"><i class="fas fa-cog"></i> Paramètres</a></li>
-                <li><a href="admin/logout.php"><i class="fas fa-sign-out-alt"></i> Déconnexion</a></li>
+                <li><a href="#" onclick="showSection('projects'); return false;"><i class="fas fa-folder"></i> Projets</a></li>
+                <li><a href="#" onclick="showSection('templates'); return false;"><i class="fas fa-th-large"></i> Modèles</a></li>
+                <li><a href="#" onclick="showSection('videos'); return false;"><i class="fas fa-video"></i> Vidéos</a></li>
+                <li><a href="#" onclick="showSection('analytics'); return false;"><i class="fas fa-chart-line"></i> Analytiques</a></li>
+                <li><a href="#" onclick="showSection('settings'); return false;"><i class="fas fa-cog"></i> Paramètres</a></li>
+                <li><a href="index.html" onclick="logout(); return false;"><i class="fas fa-sign-out-alt"></i> Déconnexion</a></li>
             </ul>
         </aside>
         
@@ -334,22 +334,22 @@
             
             <!-- Stats -->
             <div class="stats-grid">
-                <div class="stat-card">
+                <div class="stat-card" onclick="showSection('projects')" style="cursor:pointer;">
                     <h3>Projets</h3>
                     <div class="value" id="stat-projects">0</div>
                     <div class="change positive">+3 ce mois</div>
                 </div>
-                <div class="stat-card">
+                <div class="stat-card" onclick="showSection('videos')" style="cursor:pointer;">
                     <h3>Vidéos Créées</h3>
                     <div class="value" id="stat-videos">0</div>
                     <div class="change positive">+12 ce mois</div>
                 </div>
-                <div class="stat-card">
+                <div class="stat-card" onclick="showSection('analytics')" style="cursor:pointer;">
                     <h3>Temps Économisé</h3>
                     <div class="value" id="stat-time">0h</div>
                     <div class="change positive">+8h ce mois</div>
                 </div>
-                <div class="stat-card">
+                <div class="stat-card" onclick="showSection('credits')" style="cursor:pointer;">
                     <h3>Crédits Restants</h3>
                     <div class="value" id="stat-credits">0</div>
                     <div class="change">sur 1000</div>
@@ -359,17 +359,17 @@
             <!-- Tools -->
             <h2 style="margin-bottom: 20px;">Outils de Création</h2>
             <div class="tools-grid">
-                <a href="studio.html" class="tool-card">
+                <a href="studio.html" class="tool-card" onclick="return true;">
                     <div class="icon">🎬</div>
                     <h3>Créateur Vidéo</h3>
                     <p>Créez des vidéos IA professionnelles</p>
                 </a>
-                <a href="brand-analyzer.html" class="tool-card">
+                <a href="brand-analyzer.html" class="tool-card" onclick="return true;">
                     <div class="icon">📊</div>
                     <h3>Analyseur Marque</h3>
                     <p>Analysez votre identité de marque</p>
                 </a>
-                <a href="studio.html#templates" class="tool-card">
+                <a href="studio.html#templates" class="tool-card" onclick="return true;">
                     <div class="icon">🎨</div>
                     <h3>Templates</h3>
                     <p>Modèles prêts à personnaliser</p>
@@ -379,24 +379,52 @@
             <!-- Quick Actions -->
             <h2 style="margin: 30px 0 20px;">Actions Rapides</h2>
             <div class="quick-actions">
-                <a href="studio.html" class="quick-action">
+                <button class="quick-action" onclick="createProject();">
                     <i class="fas fa-plus"></i>
                     <span>Nouveau Projet</span>
-                </a>
-                <a href="#recent" class="quick-action">
+                </button>
+                <button class="quick-action" onclick="showSection('recent');">
                     <i class="fas fa-clock"></i>
                     <span>Récent</span>
-                </a>
-                <a href="#templates" class="quick-action">
+                </button>
+                <button class="quick-action" onclick="showSection('templates');">
                     <i class="fas fa-copy"></i>
                     <span>Dupliquer</span>
-                </a>
+                </button>
                 <a href="contact.html" class="quick-action">
                     <i class="fas fa-question"></i>
                     <span>Aide</span>
                 </a>
             </div>
         </main>
+    </div>
+    
+    <!-- Sections (cachées par défaut) -->
+    <div id="section-projects" style="display:none; padding: 40px;">
+        <h2>Mes Projets</h2>
+        <p>Cliquez sur "Nouveau Projet" pour commencer.</p>
+        <button class="btn-primary" onclick="createProject();" style="margin-top:20px;">+ Nouveau Projet</button>
+    </div>
+    <div id="section-templates" style="display:none; padding: 40px;">
+        <h2>Modèles</h2>
+        <p>Choisissez un modèle pour votre vidéo.</p>
+        <a href="studio.html#templates" class="btn-primary" style="display:inline-block; margin-top:20px; padding:15px 30px;">Voir les Modèles</a>
+    </div>
+    <div id="section-videos" style="display:none; padding: 40px;">
+        <h2>Mes Vidéos</h2>
+        <p>Vos vidéos créées apparaîtront ici.</p>
+    </div>
+    <div id="section-analytics" style="display:none; padding: 40px;">
+        <h2>Analytiques</h2>
+        <p>Statistiques de vos créations.</p>
+    </div>
+    <div id="section-settings" style="display:none; padding: 40px;">
+        <h2>Paramètres</h2>
+        <p>Gérez votre compte et préférences.</p>
+    </div>
+    <div id="section-recent" style="display:none; padding: 40px;">
+        <h2>Projets Récents</h2>
+        <p>Vos projets récents.</p>
     </div>
     
     <script>
@@ -479,6 +507,25 @@
         // Login function
         function goToLogin() {
             window.location.href = 'inscription.html';
+        }
+        
+        // Show section function
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('[id^="section-"]');
+            sections.forEach(section => {
+                if (section) section.style.display = 'none';
+            });
+            
+            // Show selected section
+            const selectedSection = document.getElementById('section-' + sectionId);
+            if (selectedSection) {
+                selectedSection.style.display = 'block';
+                selectedSection.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                // If section doesn't exist, show alert
+                alert('Section ' + sectionId + ' - Bientôt disponible!');
+            }
         }
     </script>
 </body>
