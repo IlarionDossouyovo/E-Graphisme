@@ -400,18 +400,15 @@
     </div>
     
     <script>
-        // Check if user is logged in
+        // Check if user is logged in - show message instead of redirect
         const user = localStorage.getItem('estudio_user');
-        if (!user) {
-            // Redirect to inscription if not logged in
-            window.location.href = 'inscription.html';
-        }
         
-        // Display user initials
+        // Display user info or prompt to login
         if (user) {
             const userData = JSON.parse(user);
             const initials = userData.name ? userData.name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0,2) : 'U';
-            document.querySelector('.user-avatar').textContent = initials;
+            const avatar = document.querySelector('.user-avatar');
+            if (avatar) avatar.textContent = initials;
             
             // Load data from APIs
             loadUserData(userData.email);
@@ -449,7 +446,11 @@
         
         function createProject() {
             const user = localStorage.getItem('estudio_user');
-            if (!user) return;
+            if (!user) {
+                alert('Veuillez vous inscrire ou vous connecter pour créer un projet');
+                window.location.href = 'inscription.html';
+                return;
+            }
             const userData = JSON.parse(user);
             const name = prompt("Nom du projet:");
             if (!name) return;
@@ -464,7 +465,7 @@
                 })
             }).then(r => r.json()).then(data => {
                 if (data.success) {
-                    alert('Projet cree!');
+                    alert('Projet créé!');
                     loadProjects(userData.email);
                 }
             });
@@ -473,6 +474,11 @@
         function logout() {
             localStorage.removeItem('estudio_user');
             window.location.href = 'index.html';
+        }
+        
+        // Login function
+        function goToLogin() {
+            window.location.href = 'inscription.html';
         }
     </script>
 </body>
